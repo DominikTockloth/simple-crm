@@ -1,0 +1,50 @@
+.add-btn {
+    position: absolute;
+    bottom: 56px;
+    right: 56px;
+}
+
+mat-card {
+    background-color: rgb(88, 84, 84);
+    color: white;
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        height: 50px;
+
+
+        &:first-child {
+            padding-left: 10px;
+        }
+    }
+    th {
+        text-align: left;
+        margin-bottom: 15px;
+        padding-top: 10px;
+
+        &:first-child {
+            padding-left: 10px;
+        }
+    }
+    tr {
+        border-bottom: 1px solid white;
+        cursor: pointer;
+
+        &:first-child {
+            cursor: unset;
+        }
+
+        &:first-child:hover {
+            background-color: rgb(88, 84, 84);
+        }
+
+        &:hover {
+            background-color: rgb(113, 111, 111);
+        }
+
+        &:last-child {
+            border-bottom: 0px;
+        }
+    }
+}

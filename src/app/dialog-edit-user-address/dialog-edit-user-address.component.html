@@ -1,0 +1,42 @@
+<div class="dialog-container">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <h2>Edit address</h2>
+    <mat-dialog-content class="content">        
+        <!-- street input-->
+        <div>
+            <mat-form-field appearance="outline" class="f-width">
+                <mat-label>Street and No.</mat-label>
+                <input matInput placeholder="Enter street and number..." [(ngModel)]="user.street"
+                    [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    my_location
+                </mat-icon>
+                <!--<mat-hint>Please enter first name</mat-hint>-->
+            </mat-form-field>
+        </div>
+        <!-- zip code and city inputs-->
+        <div style="display: flex;justify-content: space-between;">
+            <mat-form-field appearance="outline">
+                <mat-label>Zip code</mat-label>
+                <input matInput placeholder="Enter zip code..." [(ngModel)]="user.zipCode" [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    location_on
+                </mat-icon>
+                <!--<mat-hint>Please enter zip code</mat-hint>-->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="Enter city..." [(ngModel)]="user.city" [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    map
+                </mat-icon>
+                <!-- <mat-hint>Please enter city</mat-hint>-->
+            </mat-form-field>
+
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons">
+        <button (click)="dialogRef.close()">No Thanks</button>
+        <button (click)="saveUser()">Save</button>
+    </mat-dialog-actions>
+</div>

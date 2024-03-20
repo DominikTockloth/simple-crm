@@ -1,0 +1,39 @@
+<div class="dialog-container">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <h2>Edit user</h2>
+    <mat-dialog-content class="content">
+        <!-- firstname input-->
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Firstname</mat-label>
+                <input matInput placeholder="Firstname" [(ngModel)]="user.firstName" [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    verified_user
+                </mat-icon>
+            </mat-form-field>
+            <!-- lastname input-->
+            <mat-form-field appearance="outline">
+                <mat-label>Lastname</mat-label>
+                <input matInput placeholder="Lastname" [(ngModel)]="user.lastName" [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    verified_user
+                </mat-icon>
+            </mat-form-field>
+        </div>
+        <!-- email input-->
+        <div style="display: flex;justify-content: space-between;">
+            <mat-form-field appearance="outline" class="f-width">
+                <mat-label>E-Mail</mat-label>
+                <input matInput placeholder="E-Mail" [(ngModel)]="user.email" [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    mail
+                </mat-icon>
+            </mat-form-field>
+
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons">
+        <button (click)="dialogRef.close()">No Thanks</button>
+        <button (click)="saveUser()">Save</button>
+    </mat-dialog-actions>
+</div>
