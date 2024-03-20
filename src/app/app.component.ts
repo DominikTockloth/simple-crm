@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 import { UserDetailCardComponent } from './user-detail-card/user-detail-card.component';
+import { ImprintComponent } from './imprint/imprint.component';
 
 
 
@@ -21,7 +22,8 @@ import { UserDetailCardComponent } from './user-detail-card/user-detail-card.com
     DashboardComponent,
     UserComponent,
     DialogAddUserComponent,
-    UserDetailCardComponent
+    UserDetailCardComponent,
+    ImprintComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
