@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, getDoc, doc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, getDoc, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import { getDocs } from "firebase/firestore";
 import { User } from '../../models/user.class';
 
 @Injectable({
@@ -13,32 +14,43 @@ export class UserService {
     unsubUser: any;
 
 
-    constructor(private firestore: Firestore) {
-        this.unsubUserList = this.userList()
+    constructor(public firestore: Firestore) {
+        this.unsubUserList = this. userList();
     }
-
-    userList() {
-        return onSnapshot(this.userRef(), (list) => {
-            this.users = [];
-            list.forEach(element => {
-                let id = element.id;
-                let data = element.data();
-                let user = { id, data };
-                this.users.push(user);
+   
+        userList() {
+            return onSnapshot(this.userRef(), (list) => {
+                this.users = [];
+                list.forEach(element => {
+                    let id = element.id;
+                    let data = element.data();
+                    let user = { id, data };
+                    this.users.push(user);
+                })
             })
-        })
+        }
+    
+ 
+    userRef() {
+        return collection(this.firestore, 'users')
     }
 
     async saveUser(user: User) {
         await addDoc(this.userRef(), user.toJson());
     }
 
-    userRef() {
-        return collection(this.firestore, 'users')
+    async updateUser(userId: string) {
+        let singleUserRef = doc(this.userRef(), userId);
+        await updateDoc(singleUserRef, {})
     }
 
-    async loadUser(userid: string): Promise<void> {
-        const singleUserRef = doc(this.userRef(), userid);
+    singleUserRef(colId: string, userId: string) {
+        return doc(collection(this.firestore, colId), userId);
+    }
+
+
+    async loadUser(userId: string) {
+        const singleUserRef = doc(this.userRef(), userId);
         const docSnap = await getDoc(singleUserRef);
         if (docSnap.exists()) {
             this.user = docSnap.data() as User;
@@ -50,3 +62,18 @@ export class UserService {
         this.unsubUserList;
     }
 }
+
+/*
+    getAllUsers() {
+        return onSnapshot(this.userRef(), (list) => {
+            this.users = [];
+            list.forEach(element => {
+                let userId = element.id;
+                let userData = element.data();
+                let user = { userId, userData }
+                //console.log(user);
+                this.users.push(user);
+            })
+        })
+    }
+*/

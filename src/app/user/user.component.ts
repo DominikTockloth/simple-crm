@@ -26,7 +26,8 @@ import { RouterLink, RouterModule } from '@angular/router';
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
-export class UserComponent implements OnInit{
+export class UserComponent implements OnInit {
+  userId!: string;
   constructor(public dialog: MatDialog, private userservice: UserService) { }
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class UserComponent implements OnInit{
   usersFromService() {
     return this.userservice.users;
   }
-  
+
   openDialog(): void {
     this.dialog.open(DialogAddUserComponent, {});
   }

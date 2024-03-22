@@ -10,6 +10,7 @@ import { User } from '../../models/user.class';
 import { UserService } from '../services/user.service';
 
 
+
 @Component({
   selector: 'app-dialog-edit-user-detail',
   standalone: true,
@@ -32,6 +33,7 @@ export class DialogEditUserDetailComponent {
   isLoading = false;
   user: User = new User();
   userId: string | any;
+  colId: string | any;
   constructor(
     public dialogRef: MatDialogRef<DialogEditUserDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -44,6 +46,13 @@ export class DialogEditUserDetailComponent {
   }
 
   saveUser() {
+    this.isLoading = true;
+    this.userservice
+      .updateUser(this.userId)
+      .then(() => {
+        this.isLoading = false;
+        this.dialogRef.close();
+      })
 
   }
 }

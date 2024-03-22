@@ -2,11 +2,11 @@
     position: absolute;
     bottom: 56px;
     right: 56px;
-    background-color: #7a2323;
+    background-color: rgb(41, 48, 73);
 }
 
 mat-card {
-    background-color: rgb(88, 84, 84);
+    background-color: rgb(23, 41, 115);
     color: white;
     table {
         border-collapse: collapse;
@@ -37,11 +37,11 @@ mat-card {
         }
 
         &:first-child:hover {
-            background-color: rgb(88, 84, 84);
+            background-color: #171769;
         }
 
         &:hover {
-            background-color: rgb(113, 111, 111);
+            background-color: #171769;
         }
 
         &:last-child {

@@ -6,7 +6,9 @@ import { MatCardContent, MatCardModule } from '@angular/material/card';
   standalone: true,
   imports: [
     MatCardModule,
-    MatCardContent],
+    MatCardContent,
+   
+  ],
   templateUrl: './imprint.component.html',
   styleUrl: './imprint.component.scss'
 })

@@ -36,7 +36,7 @@ export class UserDetailCardComponent  {
 
   user: User = new User();
   unsub!: Subscription;
-  userId!: string;
+  userId: string | any;
 
   constructor(
     private route: ActivatedRoute,
@@ -65,7 +65,8 @@ export class UserDetailCardComponent  {
         user: this.user
       }
     });
-    dialog.componentInstance.user = new User(this.user.toJson());
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId;
   }
 
   editUserAddress() {
@@ -75,10 +76,7 @@ export class UserDetailCardComponent  {
         user: this.user
       }
     });
-    dialog.componentInstance.user = new User(this.user.toJson());
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId;
   }
-
-
-
-
 }

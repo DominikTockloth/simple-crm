@@ -7,6 +7,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { NgIf } from '@angular/common';
     MatFormField,
     MatProgressBar,
     FormsModule,
-    NgIf
+    NgIf,
   ],
   templateUrl: './dialog-edit-user-address.component.html',
   styleUrl: './dialog-edit-user-address.component.scss'
@@ -30,8 +31,10 @@ import { NgIf } from '@angular/common';
 export class DialogEditUserAddressComponent {
   isLoading = false;
   user: User = new User();
-  userId:string | any;
-  constructor(public dialogRef: MatDialogRef<DialogEditUserAddressComponent>) {
+  userId!: string;
+  constructor(
+    public dialogRef: MatDialogRef<DialogEditUserAddressComponent>,
+    private userservice: UserService) {
 
   }
 
@@ -39,8 +42,15 @@ export class DialogEditUserAddressComponent {
     this.dialogRef.close();
   }
 
-  saveUser() {
 
+  saveUser() {
+    this.isLoading = true;
+    this.userservice
+      .updateUser(this.userId)
+      .then(() => {
+        this.isLoading = false;
+        this.dialogRef.close();
+      })
   }
 
 }

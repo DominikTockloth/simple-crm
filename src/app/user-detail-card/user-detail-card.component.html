@@ -3,27 +3,46 @@
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #editMenu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="editUserDetail()">Edit </button>
+        <button mat-menu-item >Delete </button>
     </mat-menu>
     <img src="./../../assets/img/profile.png" class="mb-15">
 
     <div class="user-info mb-15">
         <h2>{{user.firstName}} {{user.lastName}}</h2>
         <span>{{user.email}}</span><br>
-        <span>Date of birth : {{user.birthDate}}</span>
+        <a href="mailTo:{{user.email}}"><mat-icon>mail</mat-icon></a>
     </div>
 </mat-card>
 
-<mat-card class="user-address">
-    <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="editUserMenu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #editUserMenu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="editUserAddress()">Edit address</button>
-    </mat-menu>
-    <mat-card-content>
-        <h3> Address :</h3><br>
-        <span>{{user.street}}</span><br>
-        <span>{{user.zipCode}} {{user.city}}</span>
-    </mat-card-content>
-</mat-card>
+<div class="user-about">
+    <mat-card class="user wi-50">
+        <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="editUserMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #editUserMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="editUserDetail()">Edit User</button>
+        </mat-menu>
+        <mat-card-content>
+            <h3> About</h3><br>
+            <div class="sp-bt mb-10"><span>Firstname :</span><span>{{user.firstName}}</span></div>
+            <div class="sp-bt mb-10"><span>Lastname :</span><span>{{user.lastName}}</span></div>
+            <div class="sp-bt mb-10"><span>Birthday :</span><span>{{user.birthDate}}</span></div>
+            <div class="sp-bt mb-10"><span>E-Mail :</span> <span>{{user.email}}</span></div>
+
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="user wi-50">
+        <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="editAddressMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #editAddressMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="editUserAddress()">Edit address</button>
+        </mat-menu>
+        <mat-card-content>
+            <h3> Address </h3><br>
+            <div class="sp-bt mb-10"><span>Street :</span><span><span>{{user.street}}</span></span></div>
+            <div class="sp-bt mb-10"><span>Zipcode :</span><span>{{user.zipCode}}</span></div>
+            <div class="sp-bt mb-10"><span>City :</span><span> <span> {{user.city}}</span></span></div>
+        </mat-card-content>
+    </mat-card>
+</div>
