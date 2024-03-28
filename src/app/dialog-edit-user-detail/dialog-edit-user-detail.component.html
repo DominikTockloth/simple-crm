@@ -3,28 +3,28 @@
     <h2>Edit user</h2>
     <mat-dialog-content class="content">
         <!-- firstname input-->
-        <div>
+        <div style="display: flex;gap: 12px;">
             <mat-form-field appearance="outline">
-                <mat-label>Firstname</mat-label>
-                <input matInput placeholder="Firstname" [(ngModel)]="user.firstName" [disabled]="isLoading">
+                <mat-label class="co-white">Firstname</mat-label>
+                <input matInput placeholder="Firstname" [(ngModel)]="user.firstName" [disabled]="isLoading" class="co-white">
                 <mat-icon matSuffix>
                     verified_user
                 </mat-icon>
             </mat-form-field>
             <!-- lastname input-->
             <mat-form-field appearance="outline">
-                <mat-label>Lastname</mat-label>
-                <input matInput placeholder="Lastname" [(ngModel)]="user.lastName" [disabled]="isLoading">
+                <mat-label class="co-white">Lastname</mat-label>
+                <input matInput placeholder="Lastname" [(ngModel)]="user.lastName" [disabled]="isLoading" class="co-white">
                 <mat-icon matSuffix>
                     verified_user
                 </mat-icon>
             </mat-form-field>
         </div>
         <!-- email input-->
-        <div style="display: flex;justify-content: space-between;">
+        <div>
             <mat-form-field appearance="outline" class="f-width">
-                <mat-label>E-Mail</mat-label>
-                <input matInput placeholder="E-Mail" [(ngModel)]="user.email" [disabled]="isLoading">
+                <mat-label class="co-white">E-Mail</mat-label>
+                <input matInput placeholder="E-Mail" [(ngModel)]="user.email" [disabled]="isLoading" class="co-white">
                 <mat-icon matSuffix>
                     mail
                 </mat-icon>

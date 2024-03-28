@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditUserAddressComponent } from './../dialog-edit-user-address/dialog-edit-user-address.component';
 import { DialogEditUserDetailComponent } from '../dialog-edit-user-detail/dialog-edit-user-detail.component';
+import { DialogDeleteUserComponent } from '../dialog-delete-user/dialog-delete-user.component';
 
 @Component({
   selector: 'app-user-detail-card',
@@ -25,7 +26,8 @@ import { DialogEditUserDetailComponent } from '../dialog-edit-user-detail/dialog
     MatButtonModule,
     MatMenuModule,
     DialogEditUserAddressComponent,
-    DialogEditUserDetailComponent
+    DialogEditUserDetailComponent,
+    DialogDeleteUserComponent
   ],
 
   templateUrl: './user-detail-card.component.html',
@@ -41,14 +43,13 @@ export class UserDetailCardComponent  {
   constructor(
     private route: ActivatedRoute,
     private userservice: UserService,
-    public dialog: MatDialog) { 
-      this.unsub = this.route.params.subscribe((params) => {
+    public dialog: MatDialog) {
+    this.unsub = this.route.params.subscribe((params) => {
       this.userId = params['id'];
       this.getUser();
     })
-   }
-
-
+  }
+ 
   async getUser() {
     await this.userservice.loadUser(this.userId);
     this.user = this.userservice.user;
@@ -78,5 +79,17 @@ export class UserDetailCardComponent  {
     });
     dialog.componentInstance.user = new User(this.user);
     dialog.componentInstance.userId = this.userId;
+  }
+
+  openDeleteDialog(){
+      const dialog = this.dialog.open(DialogDeleteUserComponent, {
+        data: {
+          userId: this.userId,
+          user: this.user
+        }
+      });
+      dialog.componentInstance.user = new User(this.user);
+      dialog.componentInstance.userId = this.userId;
+    
   }
 }

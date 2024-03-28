@@ -1,0 +1,39 @@
+<div class="dialog-container">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <h2>Add product</h2>
+    <mat-dialog-content class="content">
+        <!--  Product inputs  -->
+        <div class="input-container">
+            <mat-form-field appearance="outline" class="f-width">
+                <mat-label>Product</mat-label>
+                <input matInput placeholder="Enter product..." [disabled]="isLoading" [(ngModel)]="product.productName">
+                <mat-icon matSuffix>
+                  inventory
+                </mat-icon>
+            </mat-form-field>
+        </div>
+        <div> <!--  Price input -->
+            <mat-form-field appearance="outline" class="f-width">
+                <mat-label>Price per Unit</mat-label>
+                <input matInput placeholder="Price per Unit..." [disabled]="isLoading" type="number" min="1" [(ngModel)]="product.productPrice">
+                <mat-icon matSuffix>
+                    attach_money
+                </mat-icon>
+
+            </mat-form-field>
+        </div>
+        <!--  Type input -->
+        <div> <mat-form-field class="f-width">
+                <mat-label>Type</mat-label>
+                <input type="text" matInput placeholder="Type..." [disabled]="isLoading" [(ngModel)]="product.typeOfOrder"><mat-icon matSuffix >
+                   category
+                </mat-icon>
+
+            </mat-form-field></div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons">
+        <button (click)="onNoClick()">No Thanks</button>
+        <button (click)="saveProduct()">Save</button>
+    </mat-dialog-actions>
+</div>

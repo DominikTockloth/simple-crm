@@ -35,22 +35,32 @@ export class DialogEditUserAddressComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogEditUserAddressComponent>,
     private userservice: UserService) {
-
   }
 
   onNoClick() {
     this.dialogRef.close();
   }
 
-
   saveUser() {
     this.isLoading = true;
-    this.userservice
-      .updateUser(this.userId)
-      .then(() => {
-        this.isLoading = false;
-        this.dialogRef.close();
-      })
+    this.userservice.loadUser(this.userId).then(() => {
+      this.userservice.user = new User(this.userservice.user);
+      this.userservice.user.street = this.user.street;
+      this.userservice.user.zipCode = this.user.zipCode;
+      this.userservice.user.city = this.user.city;
+      this.userservice
+        .updateUser(this.userId, this.userservice.user)
+        .then(() => {
+          this.userservice.user = new User(this.userservice.user);
+          this.isLoading = false;
+          this.dialogRef.close();
+        })
+        .catch(error => {
+          console.error("Error updating user:", error);
+          this.isLoading = false;
+        });
+    });
   }
+
 
 }

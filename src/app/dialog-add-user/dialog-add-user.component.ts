@@ -32,10 +32,12 @@ import { UserService } from '../services/user.service';
 export class DialogAddUserComponent {
   firestore: Firestore = inject(Firestore);
   user: User = new User();
-  birthDate: Date |any;
+  birthDate: Date | any;
   isLoading = false;
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, private userservice: UserService) { }
+  constructor(
+    public dialogRef: MatDialogRef<DialogAddUserComponent>,
+    private userservice: UserService) { }
 
   saveUser() {
     this.isLoading = true;

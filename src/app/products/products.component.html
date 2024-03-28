@@ -1,0 +1,45 @@
+<div class="main">
+    <mat-card class="header">
+
+        <div class="headline"><mat-icon>inventory</mat-icon>
+            <h2>Products</h2>
+        </div>
+        <div class="search-input"><input type="text" placeholder="Search for products..."><mat-icon>search</mat-icon>
+        </div>
+    </mat-card>
+    <div class="filter-div">
+        <span>Sort by :</span>
+        <div class="filter-buttons">
+            <button>Product name</button>
+            <button>Price per unit</button>
+            <button>Type</button>
+        </div>
+    </div>
+
+    <mat-card class="table-card">
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <th>Price per unit</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+
+            <tr *ngFor="let product of productsFromService()">
+                <td>{{product.data.productName}}</td>
+                <td>{{product.data.productPrice}} €</td>
+                <td>{{product.data.typeOfOrder}}</td>
+                <td> <button mat-mini-fab matTooltip="Edit product" matToolTipPosition="right" class="edit-btn">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab matTooltip="Delete product" class="delete-btn" (click)="openDeleteDialog()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </mat-card>
+    <button mat-fab matTooltip="Add new product" class="add-btn" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

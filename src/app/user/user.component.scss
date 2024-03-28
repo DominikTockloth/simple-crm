@@ -8,9 +8,11 @@
 mat-card {
     background-color: rgb(23, 41, 115);
     color: white;
+
     table {
         border-collapse: collapse;
     }
+
     td {
         height: 50px;
 
@@ -19,6 +21,7 @@ mat-card {
             padding-left: 10px;
         }
     }
+
     th {
         text-align: left;
         margin-bottom: 15px;
@@ -28,12 +31,14 @@ mat-card {
             padding-left: 10px;
         }
     }
+
     tr {
         border-bottom: 1px solid white;
         cursor: pointer;
 
         &:first-child {
             cursor: unset;
+            display: contents;
         }
 
         &:first-child:hover {

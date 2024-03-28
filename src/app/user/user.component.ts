@@ -5,7 +5,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { DialogAddUserComponent } from './../dialog-add-user/dialog-add-user.component';
-import { NgFor } from '@angular/common';
+import { NgFor} from '@angular/common';
 import { UserService } from '../services/user.service';
 import { RouterLink, RouterModule } from '@angular/router';
 
@@ -21,7 +21,7 @@ import { RouterLink, RouterModule } from '@angular/router';
     DialogAddUserComponent,
     NgFor,
     RouterLink,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, getDoc, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
-import { getDocs } from "firebase/firestore";
+import { Firestore, addDoc, collection, getDoc, doc, onSnapshot, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { User } from '../../models/user.class';
 
 @Injectable({
@@ -15,22 +14,22 @@ export class UserService {
 
 
     constructor(public firestore: Firestore) {
-        this.unsubUserList = this. userList();
+        this.unsubUserList = this.userList();
     }
-   
-        userList() {
-            return onSnapshot(this.userRef(), (list) => {
-                this.users = [];
-                list.forEach(element => {
-                    let id = element.id;
-                    let data = element.data();
-                    let user = { id, data };
-                    this.users.push(user);
-                })
+
+    userList() {
+        return onSnapshot(this.userRef(), (list) => {
+            this.users = [];
+            list.forEach(element => {
+                let id = element.id;
+                let data = element.data();
+                let user = { id, data };
+                this.users.push(user);
             })
-        }
-    
- 
+        })
+    }
+
+
     userRef() {
         return collection(this.firestore, 'users')
     }
@@ -39,9 +38,18 @@ export class UserService {
         await addDoc(this.userRef(), user.toJson());
     }
 
-    async updateUser(userId: string) {
+    async updateUser(userId: string, updatedUser: User) {
         let singleUserRef = doc(this.userRef(), userId);
-        await updateDoc(singleUserRef, {})
+        await updateDoc(singleUserRef, updatedUser.toJson());
+    }
+
+    async deleteUser(userId: string) {
+        try {
+            await deleteDoc(doc(this.firestore, "users", userId));
+            console.log("User deleted successfully.");
+        } catch (error) {
+            console.error("Error deleting user:", error);
+        }
     }
 
     singleUserRef(colId: string, userId: string) {
@@ -62,18 +70,3 @@ export class UserService {
         this.unsubUserList;
     }
 }
-
-/*
-    getAllUsers() {
-        return onSnapshot(this.userRef(), (list) => {
-            this.users = [];
-            list.forEach(element => {
-                let userId = element.id;
-                let userData = element.data();
-                let user = { userId, userData }
-                //console.log(user);
-                this.users.push(user);
-            })
-        })
-    }
-*/

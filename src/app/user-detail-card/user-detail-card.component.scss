@@ -42,6 +42,12 @@ $bg-user-address: rgb(18, 18, 103);
     }
 }
 
+mat-icon:hover{
+    cursor: pointer;
+    color: $bg-user-address;
+    transform: scale(1.08);
+}
+
 .user-about {
     display: flex;
     gap: 20px;
@@ -68,7 +74,4 @@ $bg-user-address: rgb(18, 18, 103);
     position: absolute;
     right: 0;
     top: 0;
-    &:hover{
-        background-color: rgb(44, 44, 81);
-    }
 }

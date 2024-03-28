@@ -12,7 +12,7 @@ $bg-color: #0d104a;
     z-index: 100;
 
     mat-card {
-        height: 550px;
+        height:600px;
         width: 350px;
         padding: 35px;
         background-color: white;
@@ -22,6 +22,7 @@ $bg-color: #0d104a;
             font-weight: 500;
             text-align: center;
             margin-bottom: 30px;
+            color: black;
         }
 
         .password {
@@ -44,11 +45,97 @@ $bg-color: #0d104a;
             font-size: 18px;
             outline: none;
             cursor: pointer;
-            &:hover{
-                background-color: #5972ec; 
+
+            &:hover {
+                background-color: #5972ec;
             }
         }
+    }
 
+    .border-div {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        color: rgb(140, 139, 139);
+        font-size: 18px;
+        margin-top: 18px;
 
+        .border {
+            height: 1.5px;
+            background-color: rgb(140, 139, 139);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 18px;
+        }
+
+        span {
+            color: rgb(106, 103, 103);
+        }
+    }
+
+    .google-div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        img {
+            width: 160px;
+            height: 50px;
+            object-fit: contain;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .guest-div{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        .guest-btn{
+            width: 150px;
+            background-color: #405DE6;
+            border-radius: 1000px;
+            border-width: 0;
+            padding: 10px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #5972ec;
+            }
+        }
+    }
+
+    .border-big{
+        height: 2px;
+        background-color: rgb(140, 139, 139);
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .no-account{
+        width: 100%;
+        justify-content: center;
+        color:rgb(106, 103, 103) ;
+        font-size: 18px;
+        margin-top: 20px;
+        .blue{
+            color: #405DE6;
+            font-size: 19px;
+            font-weight: 500;
+            cursor: pointer;
+            &:hover {
+                color: #5972ec;
+            }
+        }
     }
 }

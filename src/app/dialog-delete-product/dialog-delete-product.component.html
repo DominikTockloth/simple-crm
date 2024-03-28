@@ -1,0 +1,13 @@
+<div class="dialog-container">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <h2>Delete product</h2>
+    <span>Do u really want to delete this product?</span>
+    <mat-dialog-content class="content">
+        <div class="f-width">
+            <mat-dialog-actions>
+                <button (click)="dialogRef.close()">No Thanks</button>
+                <button (click)="deleteProduct()">Delete</button>
+            </mat-dialog-actions>
+        </div>
+    </mat-dialog-content>
+</div>

@@ -47,12 +47,34 @@ export class DialogEditUserDetailComponent {
 
   saveUser() {
     this.isLoading = true;
-    this.userservice
-      .updateUser(this.userId)
-      .then(() => {
-        this.isLoading = false;
-        this.dialogRef.close();
-      })
-
+    this.userservice.loadUser(this.userId).then(() => {
+      this.userservice.user = new User(this.userservice.user);
+      this.userservice.user.firstName = this.user.firstName;
+      this.userservice.user.lastName = this.user.lastName;
+      this.userservice.user.email = this.user.email;
+      this.userservice
+        .updateUser(this.userId, this.userservice.user)
+        .then(() => {
+          this.userservice.user = new User(this.userservice.user);
+          this.isLoading = false;
+          this.dialogRef.close();
+        })
+        .catch(error => {
+          console.error("Error updating user:", error);
+          this.isLoading = false;
+        });
+    });
   }
+
+  /*
+    saveUser() {
+      this.isLoading = true;
+      this.userservice
+        .updateUser(this.userId, {user : new  User})
+        .then(() => {
+          this.isLoading = false;
+          this.dialogRef.close();
+        })
+    }
+    */
 }

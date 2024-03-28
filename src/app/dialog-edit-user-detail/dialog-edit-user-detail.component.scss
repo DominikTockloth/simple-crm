@@ -1,0 +1,40 @@
+.dialog-container {
+    background-color: #1f1f37;
+    color: white;
+    padding: 16px;
+
+    h2 {
+        text-align: center;
+    }
+
+    mat-input {
+        color: white;
+        border-color: white;
+    }
+
+    mat-dialog-actions {
+        display: flex;
+        gap: 20px;
+        outline: none;
+
+        button {
+            font-size: 18px;
+            background-color: #010114;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+
+            &:hover {
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+
+
+}
+
+.co-white {
+    color: white !important;
+}

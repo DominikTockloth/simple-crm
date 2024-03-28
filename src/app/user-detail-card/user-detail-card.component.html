@@ -1,9 +1,9 @@
 <mat-card class="detail-card">
-    <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="editMenu">
-        <mat-icon>more_vert</mat-icon>
+    <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="deleteMenu">
+        <mat-icon>delete</mat-icon>
     </button>
-    <mat-menu #editMenu="matMenu" xPosition="before">
-        <button mat-menu-item >Delete </button>
+    <mat-menu #deleteMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="openDeleteDialog()">Delete </button>
     </mat-menu>
     <img src="./../../assets/img/profile.png" class="mb-15">
 
@@ -32,12 +32,13 @@
         </mat-card-content>
     </mat-card>
     <mat-card class="user wi-50">
-        <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="editAddressMenu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #editAddressMenu="matMenu" xPosition="before">
-            <button mat-menu-item (click)="editUserAddress()">Edit address</button>
-        </mat-menu>
+        <div class="edit-btn"> <button mat-icon-button  [matMenuTriggerFor]="editAddressMenu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <div class="edit-dialog"><mat-menu #editAddressMenu="matMenu" xPosition="before" class="edit-dialog">
+                <button mat-menu-item (click)="editUserAddress()" class="edit-dialog">Edit address</button>
+            </mat-menu></div>
+        </div>
         <mat-card-content>
             <h3> Address </h3><br>
             <div class="sp-bt mb-10"><span>Street :</span><span><span>{{user.street}}</span></span></div>
