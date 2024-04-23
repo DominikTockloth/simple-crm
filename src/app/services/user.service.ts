@@ -29,7 +29,6 @@ export class UserService {
         })
     }
 
-
     userRef() {
         return collection(this.firestore, 'users')
     }

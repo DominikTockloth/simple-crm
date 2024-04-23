@@ -12,7 +12,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
 
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -27,7 +26,7 @@ import { HomeComponent } from './home/home.component';
     UserDetailCardComponent,
     ImprintComponent,
     SignInComponent,
-    HomeComponent,
+    HomeComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

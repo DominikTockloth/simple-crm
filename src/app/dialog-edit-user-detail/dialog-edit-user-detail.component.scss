@@ -1,6 +1,4 @@
 .dialog-container {
-    background-color: #1f1f37;
-    color: white;
     padding: 16px;
 
     h2 {
@@ -14,7 +12,8 @@
 
     mat-dialog-actions {
         display: flex;
-        gap: 20px;
+        justify-content: space-between;
+        padding: 0px 30px;
         outline: none;
 
         button {
@@ -31,10 +30,4 @@
             }
         }
     }
-
-
-}
-
-.co-white {
-    color: white !important;
 }

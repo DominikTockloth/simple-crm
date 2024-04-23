@@ -1,3 +1,4 @@
+<!---------------------   Detail card user   ---------------->
 <mat-card class="detail-card">
     <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="deleteMenu">
         <mat-icon>delete</mat-icon>
@@ -13,7 +14,7 @@
         <a href="mailTo:{{user.email}}"><mat-icon>mail</mat-icon></a>
     </div>
 </mat-card>
-
+<!---------------------   User information card  ---------------->
 <div class="user-about">
     <mat-card class="user wi-50">
         <button mat-icon-button class="edit-btn" [matMenuTriggerFor]="editUserMenu">
@@ -26,18 +27,19 @@
             <h3> About</h3><br>
             <div class="sp-bt mb-10"><span>Firstname :</span><span>{{user.firstName}}</span></div>
             <div class="sp-bt mb-10"><span>Lastname :</span><span>{{user.lastName}}</span></div>
-            <div class="sp-bt mb-10"><span>Birthday :</span><span>{{user.birthDate}}</span></div>
+            <div class="sp-bt mb-10"><span>Birthday :</span><span>{{formatDate(user.birthDate)}}</span></div>
             <div class="sp-bt mb-10"><span>E-Mail :</span> <span>{{user.email}}</span></div>
 
         </mat-card-content>
     </mat-card>
+    <!---------------------    User address card    ---------------->
     <mat-card class="user wi-50">
-        <div class="edit-btn"> <button mat-icon-button  [matMenuTriggerFor]="editAddressMenu">
+        <div class="edit-btn"> <button mat-icon-button [matMenuTriggerFor]="editAddressMenu">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <div class="edit-dialog"><mat-menu #editAddressMenu="matMenu" xPosition="before" class="edit-dialog">
-                <button mat-menu-item (click)="editUserAddress()" class="edit-dialog">Edit address</button>
-            </mat-menu></div>
+                    <button mat-menu-item (click)="editUserAddress()" class="edit-dialog">Edit address</button>
+                </mat-menu></div>
         </div>
         <mat-card-content>
             <h3> Address </h3><br>
@@ -47,3 +49,52 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<!--------------------------   User order section   -------------------->
+
+<div class="f-width mt-24"><span class="fs-20">Placed orders :</span></div>
+
+<div class="f-width mt-24 space-btw info">
+    <mat-card class="order-info-card">
+        <span>Orders :</span>
+        <span class="fs-20">{{ ordersFromUser().length }}</span>
+    </mat-card>
+    <mat-card class="order-info-card">
+        <span>Total sales sum :</span>
+        <span class="fs-20">{{ totalSumCalculation()}} €</span>
+    </mat-card>
+</div>
+
+<div class="main">
+    <mat-card class="table-card">
+        <table [class.d-none]="ordersFromUser().length === 0">
+            <tr>
+                <th class="small-screen-hide">Order date</th>
+                <th class="small-screen-hide">Amount of order</th>
+                <th class="pl-20">Product Name</th>
+                <th class="hide-600px">Price per unit</th>
+                <th>Total price</th>
+                <th>Action</th>
+            </tr>
+
+            <tr *ngFor="let order of  ordersFromUser()">
+                <td class="overflow-cell small-screen-hide">{{ formatOrderDate(order.data.dateOfOrder)}}</td>
+                <td class="overflow-cell small-screen-hide">{{ order.data.amount }}</td>
+                <td class="overflow-cell pl-20">{{ order.data.product }}</td>
+                <td class="overflow-cell hide-600px">{{ order.data.price }} € </td>
+                <td class="overflow-cell">{{ order.data.amount * order.data.price }} €</td>
+                <td class="btn-row"> <button mat-mini-fab matTooltip="Edit order" matToolTipPosition="right"
+                        (click)="openEditOrder(order)" class="edit-order-btn">
+                        <mat-icon class="icon">edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab matTooltip="Delete order" class="delete-btn" (click)="openDeleteOrder(order)">
+                        <mat-icon class="icon">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </mat-card>
+</div>
+<button mat-fab matTooltip="Add new order" class="add-btn" (click)="openAddOrderDialog()">
+    <mat-icon>add</mat-icon>
+</button>

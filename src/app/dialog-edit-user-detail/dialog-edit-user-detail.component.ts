@@ -45,6 +45,7 @@ export class DialogEditUserDetailComponent {
     this.dialogRef.close();
   }
 
+  /*******************  Updates user data with edited values   ***********************/
   saveUser() {
     this.isLoading = true;
     this.userservice.loadUser(this.userId).then(() => {
@@ -66,15 +67,4 @@ export class DialogEditUserDetailComponent {
     });
   }
 
-  /*
-    saveUser() {
-      this.isLoading = true;
-      this.userservice
-        .updateUser(this.userId, {user : new  User})
-        .then(() => {
-          this.isLoading = false;
-          this.dialogRef.close();
-        })
-    }
-    */
 }

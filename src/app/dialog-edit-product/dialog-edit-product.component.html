@@ -1,0 +1,42 @@
+<div class="dialog-container">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <h2>Edit product</h2>
+    <mat-dialog-content class="content">
+        <!-- productname input-->
+        <div>
+            <mat-form-field appearance="outline" class="f-width">
+                <mat-label>Product name</mat-label>
+                <input matInput placeholder="Product name" [(ngModel)]="data.data.productName" [disabled]="isLoading"
+                    class="co-white">
+                <mat-icon matSuffix>
+                    verified_user
+                </mat-icon>
+            </mat-form-field>
+        </div>
+        <div> <!-- price input-->
+            <mat-form-field appearance="outline" class="f-width">
+                <mat-label>Price</mat-label>
+                <input matInput placeholder="Price per unit" [(ngModel)]="data.data.productPrice"
+                    [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    verified_user
+                </mat-icon>
+            </mat-form-field>
+        </div>
+        <!-- type of product input-->
+        <div>
+            <mat-form-field appearance="outline" class="f-width">
+                <mat-label class="co-white">Type</mat-label>
+                <input matInput placeholder="Type" [(ngModel)]="data.data.typeOfOrder" [disabled]="isLoading">
+                <mat-icon matSuffix>
+                    mail
+                </mat-icon>
+            </mat-form-field>
+
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons">
+        <button (click)="dialogRef.close()" [disabled]="!isFormValid()">No Thanks</button>
+        <button (click)="updateProduct(productid)" [disabled]="!isFormValid()">Save</button>
+    </mat-dialog-actions>
+</div>

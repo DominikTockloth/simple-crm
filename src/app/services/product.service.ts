@@ -8,6 +8,8 @@ import { Product } from '../../models/product.class';
 
 export class ProductService {
     product: Product = new Product();
+    data: any;
+    productid: string | any;
     products: any[] = [];
     unsubProductList: any;
     unsubProduct: any;
@@ -17,7 +19,7 @@ export class ProductService {
         this.unsubProductList = this.productList();
     }
 
-  
+
     productList() {
         return onSnapshot(this.productRef(), (list) => {
             this.products = [];
@@ -25,7 +27,7 @@ export class ProductService {
                 let id = element.id;
                 const data = element.data() as Product;
                 let product = { id, data };
-               console.log(product);
+                // console.log(product.id);
                 this.products.push(product);
             })
         })
@@ -44,17 +46,16 @@ export class ProductService {
         await updateDoc(singleProductRef, updatedProduct.toJson());
     }
 
-
     async deleteProduct(productId: string) {
         try {
-            await deleteDoc(doc(this.firestore, 'products', productId));
+            await deleteDoc(doc(this.firestore, "products", productId));
             console.log("Product deleted successfully.");
         } catch (error) {
             console.error("Error deleting product:", error);
             throw error;
         }
     }
-    
+
 
     singleProductRef(colId: string, productId: string) {
         return doc(collection(this.firestore, colId), productId);

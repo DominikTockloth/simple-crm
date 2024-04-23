@@ -31,6 +31,7 @@ export class DialogDeleteUserComponent {
     private router: Router) {
   }
 
+  /****************  Deletes specific user **********************************/
   deleteUser() {
     this.isLoading = true;
     this.userservice.loadUser(this.userId).then(() => {

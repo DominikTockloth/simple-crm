@@ -6,16 +6,18 @@
         <div class="input-container">
             <mat-form-field appearance="outline" class="f-width">
                 <mat-label>Product</mat-label>
-                <input matInput placeholder="Enter product..." [disabled]="isLoading" [(ngModel)]="product.productName">
+                <input matInput placeholder="Enter product..." [disabled]="isLoading" [(ngModel)]="product.productName"
+                    required>
                 <mat-icon matSuffix>
-                  inventory
+                    inventory
                 </mat-icon>
             </mat-form-field>
         </div>
         <div> <!--  Price input -->
             <mat-form-field appearance="outline" class="f-width">
                 <mat-label>Price per Unit</mat-label>
-                <input matInput placeholder="Price per Unit..." [disabled]="isLoading" type="number" min="1" [(ngModel)]="product.productPrice">
+                <input matInput placeholder="Price per Unit..." [disabled]="isLoading" type="number" min="1"
+                    [(ngModel)]="product.productPrice" required (input)="restrictDecimalPlaces($event)">
                 <mat-icon matSuffix>
                     attach_money
                 </mat-icon>
@@ -23,17 +25,20 @@
             </mat-form-field>
         </div>
         <!--  Type input -->
-        <div> <mat-form-field class="f-width">
+        <div>
+            <mat-form-field class="f-width">
                 <mat-label>Type</mat-label>
-                <input type="text" matInput placeholder="Type..." [disabled]="isLoading" [(ngModel)]="product.typeOfOrder"><mat-icon matSuffix >
-                   category
+                <input type="text" matInput placeholder="Type..." [disabled]="isLoading"
+                    [(ngModel)]="product.typeOfOrder" required><mat-icon matSuffix>
+                    category
                 </mat-icon>
 
-            </mat-form-field></div>
+            </mat-form-field>
+        </div>
 
     </mat-dialog-content>
     <mat-dialog-actions class="buttons">
         <button (click)="onNoClick()">No Thanks</button>
-        <button (click)="saveProduct()">Save</button>
+        <button (click)="saveProduct()" [disabled]="!isFormValid">Save</button>
     </mat-dialog-actions>
 </div>

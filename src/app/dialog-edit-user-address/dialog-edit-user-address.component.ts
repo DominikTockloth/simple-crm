@@ -41,6 +41,8 @@ export class DialogEditUserAddressComponent {
     this.dialogRef.close();
   }
 
+
+  /*********************  Updates the user with changed values to database  ************************/
   saveUser() {
     this.isLoading = true;
     this.userservice.loadUser(this.userId).then(() => {

@@ -1,0 +1,44 @@
+<div class="content">
+    
+    <mat-card>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+        <div class="headline"> <span><mat-icon matTooltip="Back to LogIn" matTooltipPosition="below" routerLink="/sign-in"
+            class="arrow">arrow_back_ios_new</mat-icon></span>
+            <h1>Sign in</h1>
+        </div>
+
+        <form (submit)="onSubmit(name,email,password)" class="example-form">
+            <mat-form-field class="f-width mb-15">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput  placeholder="Name*" [(ngModel)]="name" name="name" [disabled]="isLoading" (input)="nameValidation()"    autocomplete="off" required>
+            </mat-form-field>
+            <div *ngIf="!nameIsValid && isSubmitted" class="error">
+                Please enter a name with at least 4 alphabetical characters.
+              </div>
+            <mat-form-field class="f-width mb-15">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput  placeholder="E-Mail*"  [(ngModel)]="email" name="email" [disabled]="isLoading"  (input)="mailValidation()"   autocomplete="off" required>
+            </mat-form-field>
+            <div *ngIf="!emailIsValid && isSubmitted" class="error">
+                Please provide a valid email address.
+              </div>
+              <div *ngIf="emailExists" class="error">
+              Email does already exist.
+              </div>
+            <mat-form-field class="f-width mb-15">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput placeholder="Password*"  [(ngModel)]="password" name="password" [disabled]="isLoading"  (input)="passwordValidation()"  autocomplete="off" required>
+               
+            </mat-form-field>
+            <div *ngIf="!passwordIsValid && isSubmitted" class="error"> Password must have at least 6 characters, including one number, one
+            uppercase letter, and one lowercase letter.
+            </div>
+          
+            <button mat-raised-button class="logIn-btn f-width " type="submit"   
+            [ngClass]="{ disabled: !isName || !isEmail || !isPassword }">Sign in</button>
+            <div class="got-account">Already have an account ? <span class="blue" routerLink="/sign-in">Log in</span>
+            </div>
+        </form>
+
+    </mat-card>
+</div>

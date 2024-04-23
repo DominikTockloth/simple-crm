@@ -1,36 +1,30 @@
-<div class="content" *ngIf="!isUserLoggedIn">
+<div class="content" >
     <mat-card>
         <h1>Log in</h1>
-        <div class="example-form">
+        <form (submit)="logIn(email,password)" class="example-form">
             <mat-form-field class="f-width mb-15">
                 <mat-label>Email</mat-label>
-                <input type="email" matInput [formControl]="emailFormControl" placeholder="E-Mail*">
-                @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-                <mat-error>Please enter a valid email address</mat-error>
-                }
-                @if (emailFormControl.hasError('required')) {
-                <mat-error>Email is <strong>required</strong></mat-error>
-                }
+                <input type="email" matInput placeholder="E-Mail*" name="email" [(ngModel)]="email" required>
+
             </mat-form-field>
             <mat-form-field class="f-width mb-15">
                 <mat-label>Password</mat-label>
-                <input type="password" matInput [formControl]="emailFormControl" placeholder="Password*"><button mat-fab class="password">
+                <input type="password" matInput placeholder="Password*" name="password" [(ngModel)]="password"
+                    required><button mat-fab class="password">
                     <mat-icon>visibility_lock</mat-icon>
                 </button>
-                @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-                <mat-error>Please enter a valid password</mat-error>
-                }
-                @if (emailFormControl.hasError('required')) {
-                <mat-error>Password is <strong>required</strong></mat-error>
-                }
             </mat-form-field>
-            <button mat-raised-button class="logIn-btn f-width" (click)="guestLogIn()">Log in</button>
-            <div class="border-div"><div class="border" style="margin-right: 18px;"></div><span>OR</span><div class="border" style="margin-left: 18px;"></div></div>
-            <div class="google-div"><img src="./../../assets/img/google-sign-in.png" alt="Google-signIn"></div>
-            <div class="guest-div"><button class="guest-btn">Log in as guest</button></div>
-            <div class="border-big"></div>
-            <div class="no-account">Don't have an account ? <span class="blue">Sign Up</span></div>
-        </div> 
-        
+            <div *ngIf="errorMessage" class="error">Log in failed! Please check your e-mail and password!</div>
+            <button mat-raised-button class="logIn-btn f-width" type="submit">Log in</button>
+
+        </form>
+        <div class="border-div">
+            <div class="border" style="margin-right: 18px;"></div><span>OR</span>
+            <div class="border" style="margin-left: 18px;"></div>
+        </div>
+        <div class="guest-div"><button class="guest-btn" (click)="guestLogIn()">Log in as guest</button></div>
+        <div class="no-account">Don't have an account ? <span class="blue" routerLink="/register">Sign Up</span></div>
+
+
     </mat-card>
 </div>

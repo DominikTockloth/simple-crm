@@ -1,0 +1,36 @@
+.dialog-container {
+    color: #1f1f37;
+    padding: 16px;
+
+    h2 {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    mat-input {
+        color: #1f1f37;
+        border-color: #1f1f37;
+    }
+
+    mat-dialog-actions {
+        display: flex;
+        gap: 20px;
+        outline: none;
+        padding-left: 35px;
+        button {
+            font-size: 18px;
+            background-color: white;
+            color: #010114;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+
+            &:hover {
+                background-color: black;
+                color: white;
+            }
+        }
+    }
+
+
+}

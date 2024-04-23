@@ -1,0 +1,34 @@
+<div class="dialog-container">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <h2>Edit order</h2>
+    <mat-dialog-content class="content">
+       
+        <!--  Order product input -->
+        <div>
+            <mat-form-field class="f-width">
+                <mat-label>Choose product</mat-label>
+                <mat-select [(ngModel)]="productSelected" name="selectedProductName" required>
+                    <mat-option *ngFor="let product of productName" [value]='product'>
+                      {{ product.viewValue }}
+                    </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="f-width">
+                <mat-label>Amount</mat-label>
+                <input type="number" min="1" matInput placeholder="Amount" [disabled]="isLoading"
+                    [(ngModel)]="data.data.amount" required><mat-icon matSuffix>
+                    category
+                </mat-icon>
+
+            </mat-form-field>
+        </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons">
+        <button (click)="dialogRef.close()">No Thanks</button>
+        <button (click)="updateOrder(data.orderId)" >Save</button>
+    </mat-dialog-actions>
+</div>

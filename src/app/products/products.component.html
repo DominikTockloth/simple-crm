@@ -1,18 +1,22 @@
 <div class="main">
     <mat-card class="header">
 
-        <div class="headline"><mat-icon>inventory</mat-icon>
+        <div class="headline"><mat-icon class="icon-resp">inventory</mat-icon>
             <h2>Products</h2>
         </div>
-        <div class="search-input"><input type="text" placeholder="Search for products..."><mat-icon>search</mat-icon>
+        <div class="search-input"><input type="text" placeholder={{selectedProductSort}} (input)="productsFromInput()"
+                [(ngModel)]="inputValue"><mat-icon class="icon-resp">search</mat-icon>
         </div>
     </mat-card>
     <div class="filter-div">
         <span>Sort by :</span>
         <div class="filter-buttons">
-            <button>Product name</button>
-            <button>Price per unit</button>
-            <button>Type</button>
+            <button [class.sorted]="selectedProductSort === 'Product Name'"
+                (click)=" selectedProductSort = 'Product Name'; sortProducts()">Product name</button>
+            <button [class.sorted]="selectedProductSort === 'Price per unit'"
+                (click)=" selectedProductSort = 'Price per unit'; sortByPrice()">Price per unit</button>
+            <button [class.sorted]="selectedProductSort === 'Type'"
+                (click)=" selectedProductSort = 'Type'; sortProducts()">Type</button>
         </div>
     </div>
 
@@ -24,22 +28,41 @@
                 <th>Type</th>
                 <th>Action</th>
             </tr>
+            <ng-container>
+                <tr *ngFor="let product of sortedProductsFromInput">
+                    <td class="overflow-cell">{{ product.data.productName}}</td>
+                    <td class="overflow-cell">{{product.data.productPrice}} €</td>
+                    <td class="overflow-cell">{{product.data.typeOfOrder}}</td>
+                    <td class="btn-row"> <button mat-mini-fab matTooltip="Edit product" matToolTipPosition="right"
+                            class="edit-btn" (click)="openEditDialog(product.id,data)">
+                            <mat-icon class="icon">edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab matTooltip="Delete product" class="delete-btn"
+                            (click)="openDeleteDialog(product.id)">
+                            <mat-icon class="icon">delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
 
-            <tr *ngFor="let product of productsFromService()">
-                <td>{{product.data.productName}}</td>
-                <td>{{product.data.productPrice}} €</td>
-                <td>{{product.data.typeOfOrder}}</td>
-                <td> <button mat-mini-fab matTooltip="Edit product" matToolTipPosition="right" class="edit-btn">
-                        <mat-icon>edit</mat-icon>
+
+            <tr *ngFor="let product of productsFromService()" [class.d-none]="sortedProductsFromInput.length > 0">
+                <td class="overflow-cell">{{product.data.productName}}</td>
+                <td class="overflow-cell">{{product.data.productPrice}} €</td>
+                <td class="overflow-cell">{{product.data.typeOfOrder}}</td>
+                <td class="btn-row"> <button mat-mini-fab matTooltip="Edit product" matToolTipPosition="right"
+                        class="edit-btn" (click)="openEditDialog(product.id , product)">
+                        <mat-icon class="icon">edit</mat-icon>
                     </button>
-                    <button mat-mini-fab matTooltip="Delete product" class="delete-btn" (click)="openDeleteDialog()">
-                        <mat-icon>delete</mat-icon>
+                    <button mat-mini-fab matTooltip="Delete product" class="delete-btn"
+                        (click)="openDeleteDialog(product.id)">
+                        <mat-icon class="icon">delete</mat-icon>
                     </button>
                 </td>
             </tr>
         </table>
-    </mat-card>
-    <button mat-fab matTooltip="Add new product" class="add-btn" (click)="openDialog()">
+    </mat-card>    
+</div>
+<button mat-fab matTooltip="Add new product" class="add-btn" (click)="openDialog()">
         <mat-icon>add</mat-icon>
     </button>
-</div>

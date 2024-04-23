@@ -1,13 +1,16 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFabButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/firebase-auth.service';
+import { UserService } from '../services/user.service';
+import { ProductService } from '../services/product.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -30,20 +33,53 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './sign-in.component.scss'
 })
 
-export class SignInComponent implements ErrorStateMatcher {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+export class SignInComponent {
+
+  password: string = '';
+  email: string = '';
+  isLoading: boolean = false;
+  errorMessage: boolean = false;
+
+  constructor(
+    private router: Router,
+    public authservice: AuthService,
+    public userservice: UserService,
+    public productservice: ProductService,
+    public orderservice: OrderService
+  ) {
+
   }
 
-  isUserLoggedIn = false;
-  constructor(private router: Router) {
 
+  /*******************  Handles regular log in with password and email   ****************/
+  async logIn(email: string, password: string) {
+    this.isLoading = true;
+    try {
+      await this.authservice.loginUser(email, password);
+      await this.userservice.userList();
+      await this.productservice.productList();
+      await this.orderservice.orderList();
+      this.router.navigate(['/dashboard']);
+    } catch (error) {
+      this.errorMessage = true;
+      this.isLoading = false;
+      console.error('login fehlgeschlagen', error)
+    }
   }
 
-  guestLogIn() {
-    this.isUserLoggedIn = true;
-    this.router.navigate(['dashboard']);
+  /*********************  Handles guest log in with anonymous data   ***********************/
+  async guestLogIn() {
+    this.isLoading = true;
+    try {
+      await this.userservice.userList();
+      await this.productservice.productList();
+      await this.orderservice.orderList();
+      await this.authservice.guestLogin();
+      this.router.navigate(['/dashboard']);
+    } catch (error) {
+      this.isLoading = false;
+      console.error('Gast-Login fehlgeschlagen', error);
+    }
+
   }
 }

@@ -3,7 +3,7 @@ $bg-color: #0d104a;
 .content {
     height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     inset: 0;
     display: flex;
     justify-content: center;
@@ -12,7 +12,6 @@ $bg-color: #0d104a;
     z-index: 100;
 
     mat-card {
-        height:600px;
         width: 350px;
         padding: 35px;
         background-color: white;
@@ -75,30 +74,13 @@ $bg-color: #0d104a;
         }
     }
 
-    .google-div {
+    .guest-div {
         width: 100%;
         display: flex;
         justify-content: center;
         margin-top: 20px;
 
-        img {
-            width: 160px;
-            height: 50px;
-            object-fit: contain;
-            cursor: pointer;
-
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
-    }
-
-    .guest-div{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        .guest-btn{
+        .guest-btn {
             width: 150px;
             background-color: #405DE6;
             border-radius: 1000px;
@@ -115,27 +97,41 @@ $bg-color: #0d104a;
         }
     }
 
-    .border-big{
-        height: 2px;
-        background-color: rgb(140, 139, 139);
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    .no-account{
+    .no-account {
         width: 100%;
         justify-content: center;
-        color:rgb(106, 103, 103) ;
+        color: rgb(106, 103, 103);
         font-size: 18px;
         margin-top: 20px;
-        .blue{
+
+        .blue {
             color: #405DE6;
             font-size: 19px;
             font-weight: 500;
             cursor: pointer;
+
             &:hover {
                 color: #5972ec;
             }
         }
+    }
+
+    .error {
+        color: rgb(243, 37, 37);
+        font-size: 12px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
+/*****************  responsive  *****************/
+
+@media(max-width:420px) {
+    mat-card {
+        width: 300px !important;
+    }
+
+    .no-account {
+        text-align: center !important;
     }
 }

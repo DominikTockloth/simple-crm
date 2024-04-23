@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<h1 *ngIf="displayName">Welcome {{ displayName }} ! 👋</h1>
+<h1 *ngIf="!displayName"> Welcome Guest ! 👋</h1>
+
+<div class="information f-width">
+    <mat-card>
+        <span><mat-icon>bar_chart_4_bars</mat-icon>Total Revenue</span>
+        <p>{{ totalRevenue }} €</p>
+    </mat-card>
+    <mat-card>
+        <span><mat-icon>inventory_2</mat-icon>Products</span>
+        <p>{{ allProducts }}</p>
+    </mat-card>
+    <mat-card>
+        <span><mat-icon>group</mat-icon>Users</span>
+        <p>{{ allUsers }}</p>
+    </mat-card>
+</div>
+
+<div class="chart-container f-width">
+    <span class="headline"> <mat-icon>award_star</mat-icon> Orders </span>
+    <canvas id="orderChartCanvas" style="width: 100%;max-height: 350px;"> {{ orderChart }}</canvas>
+</div>
+
+<div class="chart-container-two f-width">
+    <span class="headline"> <mat-icon>award_star</mat-icon>Products</span>
+    <canvas id="productChartCanvas" style="width: 100%;max-height: 350px;"> {{ productChart }}</canvas>
+</div>

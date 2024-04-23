@@ -6,15 +6,17 @@
         <div class="input-container">
             <mat-form-field appearance="outline">
                 <mat-label>First name</mat-label>
-                <input matInput placeholder="Enter firstname..." [(ngModel)]="user.firstName" [disabled]="isLoading">
+                <input matInput placeholder="Enter firstname*" [(ngModel)]="user.firstName" [disabled]="isLoading"
+                    required>
                 <mat-icon matSuffix>
                     verified_user
                 </mat-icon>
-                <!--<mat-hint>Please enter first name</mat-hint>-->
             </mat-form-field>
+
             <mat-form-field appearance="outline">
                 <mat-label>Last name</mat-label>
-                <input matInput placeholder="Enter lastname..." [(ngModel)]="user.lastName" [disabled]="isLoading">
+                <input matInput placeholder="Enter lastname*" [(ngModel)]="user.lastName" [disabled]="isLoading"
+                    required>
                 <mat-icon matSuffix>
                     verified_user
                 </mat-icon>
@@ -24,23 +26,18 @@
         <!-- Email input -->
         <div> <mat-form-field class="f-width">
                 <mat-label>Email</mat-label>
-                <input type="email" matInput  placeholder="Enter your e-mail..." [(ngModel)]="user.email" [disabled]="isLoading"><mat-icon matSuffix>
-                  mail
+                <input type="email" matInput placeholder="Enter your e-mail*" [(ngModel)]="user.email"
+                    [disabled]="isLoading" required><mat-icon matSuffix>
+                    mail
                 </mat-icon>
-               <!-- @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-                <mat-error>Please enter a valid email address</mat-error>
-                }
-                @if (emailFormControl.hasError('required')) {
-                <mat-error>Email is <strong>required</strong></mat-error>
-                }-->
             </mat-form-field></div>
         <!-- Birthday-input -->
         <div class="">
             <mat-form-field class="f-width">
                 <mat-label>Birthday</mat-label>
-                <input matInput [matDatepicker]="datepicker" [(ngModel)]="birthDate" [disabled]="isLoading">
+                <input matInput [matDatepicker]="datepicker" [(ngModel)]="birthDate" [disabled]="isLoading" required>
                 <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker>
+                <mat-datepicker #datepicker [startView]="'multi-year'" [yearRange]="'1950:today'">
                     <mat-datepicker-actions>
                         <button mat-button matDatepickerCancel [disabled]="isLoading">Cancel</button>
                         <button mat-raised-button color="primary" matDatepickerApply
@@ -52,9 +49,9 @@
         <!-- street input-->
         <div>
             <mat-form-field appearance="outline" class="f-width">
-                <mat-label>Street and No.</mat-label>
-                <input matInput placeholder="Enter street and number..." [(ngModel)]="user.street"
-                    [disabled]="isLoading">
+                <mat-label>Street and No.*</mat-label>
+                <input matInput placeholder="Enter street and number*" [(ngModel)]="user.street"
+                    [disabled]="isLoading" required>
                 <mat-icon matSuffix>
                     my_location
                 </mat-icon>
@@ -65,7 +62,8 @@
         <div style="display: flex;justify-content: space-between;">
             <mat-form-field appearance="outline">
                 <mat-label>Zip code</mat-label>
-                <input matInput placeholder="Enter zip code..." [(ngModel)]="user.zipCode" [disabled]="isLoading">
+                <input matInput placeholder="Enter zip code*" [(ngModel)]="user.zipCode" [disabled]="isLoading"
+                    required>
                 <mat-icon matSuffix>
                     location_on
                 </mat-icon>
@@ -73,7 +71,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
-                <input matInput placeholder="Enter city..." [(ngModel)]="user.city" [disabled]="isLoading">
+                <input matInput placeholder="Enter city*" [(ngModel)]="user.city" [disabled]="isLoading" required>
                 <mat-icon matSuffix>
                     map
                 </mat-icon>
@@ -81,9 +79,11 @@
             </mat-form-field>
 
         </div>
+        <span style="color: rgb(243, 37, 37);font-size: 18px;">*required</span>
     </mat-dialog-content>
+
     <mat-dialog-actions class="buttons">
         <button (click)="onNoClick()">No Thanks</button>
-        <button (click)="saveUser()">Save</button>
+        <button (click)="saveUser()" [disabled]="!isFormValid()">Save</button>
     </mat-dialog-actions>
 </div>

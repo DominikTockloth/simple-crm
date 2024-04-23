@@ -1,6 +1,13 @@
 $bg-light: rgb(58 57 155);
 $bg-dark: rgb(18, 18, 103);
 
+.add-btn {
+    position: fixed;
+    bottom: 46px;
+    right: 46px;
+    background-color: rgb(41, 48, 73);
+}
+
 .main {
     width: 100%;
 
@@ -45,8 +52,8 @@ $bg-dark: rgb(18, 18, 103);
     }
 
     mat-icon {
-        height: 45px !important;
-        width: 45px !important;
+        height: 45px;
+        width: 45px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -83,16 +90,20 @@ $bg-dark: rgb(18, 18, 103);
 
     }
 
+    .d-none {
+        display: none;
+    }
+
+    .sorted {
+        background-color: rgb(86, 84, 231) !important;
+    }
+
     .table-card {
         margin-top: 30px;
     }
+    
 
-    .add-btn {
-        position: absolute;
-        bottom: 56px;
-        right: 56px;
-        background-color: rgb(41, 48, 73);
-    }
+   
 
     /*********************  Style for product table  *******************/
     mat-card {
@@ -129,7 +140,7 @@ $bg-dark: rgb(18, 18, 103);
 
             &:first-child {
                 cursor: unset;
-                padding-bottom: 8px ;
+                padding-bottom: 8px;
                 color: rgb(91, 40, 231);
                 display: contents;
             }
@@ -156,6 +167,85 @@ $bg-dark: rgb(18, 18, 103);
         .delete-btn {
             color: rgb(202, 29, 29);
             background-color: rgb(23, 41, 115);
+        }
+    }
+
+    .overflow-cell {
+        max-width: 90px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/**********************************  Responsive design  *******************************/
+@media(max-width:700px) {
+
+    .header {
+        justify-content: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+
+        input {
+            text-align: center !important;
+        }
+    }
+
+    .filter-buttons {
+        gap: 15px !important;
+
+        button {
+            font-size: 13px !important;
+        }
+    }
+
+    .filter-div {
+        font-size: 16px !important;
+    }
+
+    .btn-row {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .icon {
+        height: 25px !important;
+        width: 25px !important;
+    }
+
+    .overflow-cell {
+        padding-left: 8px !important;
+    }
+
+    table {
+        td {
+            font-size: 12px !important;
+        }
+    }
+
+    .icon-resp {
+        display: none !important;
+    }
+
+    td {
+        button {
+            height: 30px !important;
+            width: 30px !important;
+        }
+    }
+
+    @media(max-width:450px) {
+        tr {
+            &:first-child {
+                font-size: 9px;
+            }
+        }
+    }
+
+    @media(max-width:410px){
+        .overflow-cell{
+            max-width: 55px !important;
         }
     }
 }

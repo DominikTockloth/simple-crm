@@ -37,13 +37,29 @@ export class DialogAddProductComponent {
     public dialogRef: MatDialogRef<DialogAddProductComponent>,
     private productservice: ProductService) { }
 
-   
+
+  /***************  Saves the added product  ********************************/
   saveProduct() {
     this.isLoading = true;
     this.productservice.saveProduct(this.product);
-    console.log('current product', this.product);
     this.isLoading = false;
     this.dialogRef.close();
+  }
+
+  /*******************  This function is to round the decimals to 2  *************/
+  restrictDecimalPlaces(event: any) {
+    const inputValue = event.target.value;
+    const parts = inputValue.split('.');
+    if (parts.length > 1 && parts[1].length > 2) {
+      const roundedValue = parseFloat(inputValue).toFixed(2);
+      event.target.value = roundedValue;
+    }
+  }
+
+
+  /****************************   Checks, if all inputs are filled and disables the save button   ************/
+  isFormValid() {
+    return this.product.productName && this.product.productPrice && this.product.typeOfOrder;
   }
 
   onNoClick(): void {

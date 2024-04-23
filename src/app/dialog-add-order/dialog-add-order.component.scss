@@ -1,0 +1,61 @@
+.dialog-container {
+    padding: 16px 0px;
+    width: 400px;
+
+    >h2 {
+        display: flex;
+        justify-content: center;
+        color: rgba(0, 0, 0, 0.45);
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .input-container {
+        display: flex;
+        gap: 16px;
+    }
+}
+
+.buttons {
+    display: flex;
+    gap: 24px;
+    padding-left: 24px;
+
+    button {
+        background-color: white;
+        color: #8c8c8c;
+        padding: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.25);
+
+        }
+    }
+}
+
+mat-progress-bar {
+    margin-top: -16px;
+    margin-bottom: 15px;
+}
+
+/**************************  Responsive *************************/
+@media(max-width:530px) {
+    .dialog-container {
+        width: 280px !important;
+    }
+
+    .mat-mdc-option{
+        font-size: 12px !important;
+    }
+    mat-option {
+        span {
+            font-size: 12px !important;
+        }
+    }
+}

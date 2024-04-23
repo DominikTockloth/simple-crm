@@ -3,6 +3,7 @@ $bg-color: #0d104a;
 .mat-drawer-container {
     height: 100vh;
     position: relative;
+    z-index: 10;
 
     mat-drawer {
         box-shadow: -8px 0px 10px 10px rgba(0, 0, 0, 0.4);
@@ -16,12 +17,21 @@ mat-toolbar {
 }
 
 .menu-icon {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    width: 65px;
     cursor: pointer;
     margin-right: 16px;
+    background-color: #454cdf;;
 }
 
 .sidenav {
-    width: 300px;
+    width: 250px;
 
     .headline {
         border-bottom: 1px solid rgba(0, 0, 0, 0.25);
@@ -60,15 +70,41 @@ mat-toolbar {
     }
 }
 
-.active{
+.active {
     background-color: #0101b2;
 }
 
+.responsive {
+    margin-left: -250px;
+}
+
 .router-div {
+   
     padding-top: 16px;
+    padding-bottom: 30px;
     padding-left: 56px;
     padding-right: 56px;
     background-color: #080848;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
     color: white;
+    z-index: 1;
+}
+
+
+/****************************   Responsive  ***********************/
+
+@media(max-width:600px) {
+    .router-div {
+          min-height: calc(100vh - 72px);
+    }
+    .menu-icon{
+        height: 56px !important;
+    }
+}
+
+@media(max-width:500px) {
+    .router-div {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
 }

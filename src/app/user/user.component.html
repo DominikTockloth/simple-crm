@@ -1,17 +1,46 @@
-<mat-card>
+<mat-card class="header">
+
+  <div class="headline"><mat-icon class="icon-resp">person</mat-icon>
+      <h2>User</h2>
+  </div>
+  <div class="search-input"><input type="text" placeholder={{selectedUserSort}} (input)="usersFromInput()"
+    [(ngModel)]="inputValue"><mat-icon class="icon-resp">search</mat-icon>
+  </div>
+</mat-card>
+<div class="filter-div">
+  <span>Sort by :</span>
+  <div class="filter-buttons">
+      <button  [class.sorted]="selectedUserSort === 'Firstname'"
+      (click)=" selectedUserSort = 'Firstname'; sortUsers()">Firstname</button>
+      <button   [class.sorted]="selectedUserSort === 'Birthdate'"
+      (click)=" selectedUserSort = 'Birthdate'; sortUsers()">Birthdate</button>
+      <button   [class.sorted]="selectedUserSort === 'City'"
+      (click)=" selectedUserSort = 'City'; sortUsers()">City</button>
+  </div>
+</div>
+
+<mat-card class="table-card">
   <table>
     <tr>
       <th>Name</th>
-      <th>E-Mail</th>
+      <th class="mail">E-Mail</th>
       <th>Birth date</th>
       <th>City</th>
     </tr>
+    <ng-container>
+      <tr *ngFor="let user of sortedUsersFromInput" [routerLink]="['/user/', user.id]">
+          <td class="overflow-cell ">{{ user.data.firstName }} {{ user.data.lastName }}</td>
+          <td class="overflow-cell " class="mail">{{ user.data.email }} </td>
+          <td class="overflow-cell ">{{ formatDate(user.data.birthDate)}}</td>
+          <td class="overflow-cell "> {{ user.data.city }}</td>
+      </tr>
+  </ng-container>
  
-    <tr *ngFor="let user of usersFromService();let i = index" [routerLink]="['/user/', user.id]">
-      <td>{{user.data.firstName}} {{user.data.lastName}}</td>
-      <td>{{user.data.email}}</td>
-      <td>{{user.data.birthDate}}</td>
-      <td>{{user.data.city}}</td>
+    <tr *ngFor="let user of usersFromService();let i = index" [routerLink]="['/user/', user.id]" [class.d-none]="sortedUsersFromInput.length > 0">
+      <td class="overflow-cell ">{{user.data.firstName}} {{user.data.lastName}}</td>
+      <td class="overflow-cell " class="mail">{{user.data.email}}</td>
+      <td class="overflow-cell ">{{ formatDate(user.data.birthDate)}}</td>
+      <td class="overflow-cell ">{{user.data.city}}</td>
     </tr>
   </table>
 </mat-card>

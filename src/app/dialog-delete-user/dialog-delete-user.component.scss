@@ -12,7 +12,7 @@
     }
 
     span {
-       padding-left: 30px;
+        padding-left: 30px;
     }
 
     mat-progress-bar {
@@ -42,5 +42,26 @@
                 background-color: rgb(225, 51, 51);
             }
         }
+    }
+}
+
+/**************************  Responsive design  **************************/
+@media(max-width:406px) {
+    mat-dialog-actions {
+        gap: 30px !important;
+    }
+}
+
+@media(max-width:380px) {
+    mat-dialog-actions {
+        gap: 20px !important;
+
+        button {
+            font-size: 13px !important;
+        }
+    }
+
+    .dialog-container span {
+        padding-left: 15px !important;
     }
 }

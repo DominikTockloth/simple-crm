@@ -3,6 +3,7 @@ export class Product {
     productPrice: string;
     typeOfOrder: string;
     id: string;
+    data: any;
 
 
     constructor(obj?: any) {
@@ -17,7 +18,7 @@ export class Product {
         return {
             productName: this.productName,
             productPrice: this.productPrice,
-            typeOfOrder: this.typeOfOrder
+            typeOfOrder: this.typeOfOrder,
         }
     }
 
